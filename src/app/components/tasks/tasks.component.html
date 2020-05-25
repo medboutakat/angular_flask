@@ -1,0 +1,71 @@
+ 
+<div class="row">
+    <div class="col-md-6 mx-auto">
+
+
+
+        <div class="row card bg-success">
+ 
+            <div class="col card card-body">
+                <h5 class="card-title">Create new task
+                </h5>
+                <form [formGroup]="mainForm" (ngSubmit)="onSubmit()" novalidate>
+
+
+                    <div class="form-group">
+                        <label for="id">Id</label>
+                        <input type="text" class="form-control" id="id" formControlName="id"
+                            aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                            anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="label">Label</label>
+                        <input type="text" class="form-control" id="label" formControlName="label"
+                            aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                            anyone else.</small>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" formControlName="completed" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success" [disabled]="mainForm.pristine">Save</button>
+                   
+                    <button type="reset" class="btn btn-danger" (click)="revert()" [disabled]="mainForm.pristine">
+                        Revert
+                    </button>
+
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+
+<div class="row">
+    
+
+    <div class="col-md-6 mx-auto">
+
+        <h3>Tasks</h3>
+        <ul class="list-group" *ngFor="let task of tasks">
+            <li class="list-group-item"   (click)="edit(task)"> {{ task.id }} : {{task.label}} is
+                <b>{{ task.completed? 'completed':"not completed yet"}} </b> </li> 
+
+                <button (click)="delete(task.id)">
+                            Delete
+                </button>
+
+        </ul>
+
+
+    </div>
+</div>
